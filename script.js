@@ -1,3 +1,8 @@
+// Introducing game lore
+console.log(
+  `Earth has been attacked by a horde of aliens! You are the captain of the USS Assembly, on a mission to destroy every last alien ship.Battle the aliens as you try to destroy them with your lasers.There are six alien ships. The aliens' weakness is that they are too logical and attack one at a time: they will wait to see the outcome of a battle before deploying another alien ship. Your strength is that you have the initiative and get to attack first. However, you do not have targeting lasers and can only attack the aliens in order. After you have destroyed a ship, you have the option to make a hasty retreat.`
+);
+
 // =============== Blueprint class ===============
 class Ship {
   constructor(name, hull, firepower, accuracy) {
@@ -32,6 +37,7 @@ class Player extends Ship {
   retreat() {
     if (this.hull <= 5 || this.hull > 1)
       console.log(`OUR ENGINES ARE FAILING! Should we retreat or attack?!`);
+    gamePlay = false;
   }
 }
 const p1 = new Player("Nala");
@@ -56,35 +62,20 @@ class Enemy extends Ship {
 
     if (p1.hull <= 0) {
       console.log(`GAME OVER! You tried your best`);
-      // break
     }
   }
 }
 const e1 = new Enemy();
 
-// // add enemy armada to respawn
-// const alienArmada = [];
-// function aetAlienArmada() {
-//   for (let i = 0; i < 6; i++) {
-//     const alien = new Enemy();
-//     alienArmada.push(alien);
-//   }
-// }
-// // add a start game object loop
-// const gameObject = {
-//   updateGame() {
-//     if (p1.hull <= 0) {
-//       console.log("GAME OVER! do better next time...");
-//       const p2 = new Player(20, 5, 0.7);
-//     }
-//     if (alienArmada === 0) {
-//       console.log(
-//         "CONGRATULATIONS YOU DEFEATED All THE ENEMIES! You deserve a drink!"
-//       );
-//       const p2 = new Player(20, 5, 0.7);
-//     }
-//   },
-// };
+// add enemy armada to respawn
+const alienArmada = [];
+for (let i = 1; i < 7; i++) {
+  alienArmada.push(new Enemy(`Enemy ship${i}`));
+}
+console.log(alienArmada);
+
+// add a start game object loop
+
 // ! got an error after i added this portion -- revisit when you can
 
 // =============== Buttons ===============
@@ -101,11 +92,13 @@ newGame.addEventListener("click", function () {
       console.log(`Get ready ${p1.name}!`);
       console.log(p1);
       console.log(e1);
+      gamePlay = true;
       // removes event listener so the game can proceed
       document.removeEventListener("keydown", keydownListener);
     } else if (event.key === "n") {
       // Code for 'n' key pressed
       console.log("Nvm.");
+      gamePlay = false;
       document.removeEventListener("keydown", keydownListener);
       // refreshes the page after a delay using set time out
       setTimeout(location.reload.bind(location), 3000);
@@ -127,13 +120,13 @@ newGame.addEventListener("click", function () {
         console.log();
       }
     });
+  });
 
-    const retreat = document.querySelector("#retreat");
-    retreat.addEventListener("click", function () {
-      console.log("maybe next time...");
-      // refresh page with delay
-      setTimeout(location.reload.bind(location), 3500);
-    });
+  const retreat = document.querySelector("#retreat");
+  retreat.addEventListener("click", function () {
+    console.log("maybe next time...");
+    // refresh page with delay
+    setTimeout(location.reload.bind(location), 3500);
   });
 });
 
