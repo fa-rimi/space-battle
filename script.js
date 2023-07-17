@@ -1,3 +1,4 @@
+// =============== Blueprint class ===============
 class Ship {
   constructor(name, hull, firepower, accuracy) {
     this.name = name;
@@ -8,6 +9,7 @@ class Ship {
   // both ships (sub classes) are will use an attack class
 }
 
+// =============== 1. Subclass for main player ship :) ===============
 class Player extends Ship {
   constructor(name, hull, firepower, accuracy) {
     super(name, hull, firepower, accuracy);
@@ -24,6 +26,7 @@ class Player extends Ship {
 const p1 = new Player("Nala");
 // console.log(p1);
 
+// =============== 1. Subclass for enemy ship :( ===============
 class Enemy extends Ship {
   constructor(name = "Alien Ship", hull, firepower, accuracy) {
     super(name, hull, firepower, accuracy);
@@ -35,6 +38,8 @@ class Enemy extends Ship {
 const e1 = new Enemy();
 
 // add a start game object loop
+
+// =============== Buttons ===============
 
 const newGame = document.querySelector("#new-game");
 // new game button when clicked on screen a prompt appears
